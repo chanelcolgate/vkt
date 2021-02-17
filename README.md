@@ -1,3 +1,20 @@
+## fix error
+- sudo npm install -g n
+- sudo n 11.15.0
+- sudo npm install -g gulp@^3.9.1
+- npm rebuild node-sass
+- sudo npm install --save semantic-ui
+- sudo n 10.12.0
+- npx create-react-app voting-app
+## create-react-app
+- npx create-react-app voting-app
+- cd voting-app/
+- sudo npm install --save semantic-ui
+## create folder
+- folder should save in public where have file index.html
+## insert file
+- insert file is folder where have file index.js
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
