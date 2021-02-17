@@ -4,10 +4,10 @@ import './index.css';
 import App from './routing-basic/app-1.js';
 import ProductList from './voting-app/app-1.js';
 import reportWebVitals from './reportWebVitals';
-import Timer from './time_tracking_app/app-1.js';
+import TimerDashboard from './time_tracking_app/app-2.js';
 
 ReactDOM.render(
-    <Timer />,
+    <TimerDashboard />,
     document.getElementById('content')
 );
 
