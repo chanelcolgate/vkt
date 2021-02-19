@@ -1,8 +1,11 @@
+import {v4 as uuid} from 'uuid';
+
 export default function helpers() {
     function newTimer(attrs = {}) {
         const timer = {
             title: attrs.title || 'Timer',
             project: attrs.project || 'Project',
+            id: uuid(),
             elapsed: 0,
         };
 
@@ -39,5 +42,6 @@ export default function helpers() {
 
     return {
         renderElapsedString,
+        newTimer,
     };
 }

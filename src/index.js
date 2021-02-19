@@ -4,7 +4,7 @@ import './index.css';
 import App from './routing-basic/app-1.js';
 import ProductList from './voting-app/app-1.js';
 import reportWebVitals from './reportWebVitals';
-import TimerDashboard from './time_tracking_app/app-2.js';
+import TimerDashboard from './time_tracking_app/app-4.js';
 
 ReactDOM.render(
     <TimerDashboard />,
