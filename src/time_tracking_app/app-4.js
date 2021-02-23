@@ -1,25 +1,22 @@
 import React from 'react';
 import {v4 as uuid} from 'uuid';
 import helpers from './helpers';
+import client from './client';
 
 class TimerDashboard extends React.Component {
     state = {
-        timers: [
-            {
-                title: 'Practice squat',
-                project: 'Gym Chores',
-                id: uuid(),
-                elapsed: 6456099,
-                runningSince: Date.now(),
-            },
-            {
-                title: 'Bake squash',
-                project: 'Kitchen Chores',
-                id: uuid(),
-                elapsed: 1273998,
-                runningSince: null,
-            },
-        ]
+        timers: [],
+    };
+
+    componentDidMount() {
+        this.loadTimersFromServer();
+        setInterval(this.loadTimersFromServer, 5000);
+    };
+
+    loadTimersFromServer = () => {
+        client().getTimers((serverTimers) => (
+            this.setState({ timers: serverTimers })
+        ));
     };
 
     handleCreateFormSubmit = (timer) => {
@@ -31,6 +28,8 @@ class TimerDashboard extends React.Component {
         this.setState({
             timers: this.state.timers.concat(t),
         });
+
+        client().createTimer(t);
     };
 
     handleEditFormSubmit = (attrs) => {
@@ -50,6 +49,8 @@ class TimerDashboard extends React.Component {
                 }
             }),
         });
+
+        client().updateTimer(attrs);
     };
 
     handleTrashClick = (timerId) => {
@@ -60,6 +61,10 @@ class TimerDashboard extends React.Component {
         this.setState({
             timers: this.state.timers.filter(t => t.id !== timerId),
         });
+
+        client().deleteTimer(
+            { id: timerId }
+        );
     };
 
     handleStartClick = (timerId) => {
@@ -83,7 +88,11 @@ class TimerDashboard extends React.Component {
                     return timer;
                 }
             }),
-        })
+        });
+
+        client().startTimer(
+            { id: timerId, start: now}
+        );
     };
 
     stopTimer = (timerId) => {
@@ -102,6 +111,10 @@ class TimerDashboard extends React.Component {
                 }
             }),
         });
+
+        client().stopTimer(
+            { id: timerId, stop: now }
+        );
     };
 
     render() {
